@@ -1,0 +1,21 @@
+[im, MAP] = imread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\doc1.bmp');
+
+imContrast = im*1;
+
+level = graythresh(imContrast);
+
+bw = im2bw(im,level);
+
+bw = bwareaopen(bw, 10);
+
+figure;
+title('Imagem Original');
+imshow(im);
+
+figure;
+title('Imagem com Contraste');
+imshow(imContrast);
+
+figure;
+title('Entrada com eco Filtrada');
+imshow(bw);

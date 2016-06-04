@@ -1,0 +1,10 @@
+im = imread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\lena_rings.bmp')
+
+imfourier = fftshift(fft2(im));
+%imshow(log(abs(imfourier)), []); 
+
+h = fspecial('gaussian', [256 256], 1.3)
+y = imfilter(im,h)
+y = y*1.25 %aumenta contraste
+
+imshow(y)
