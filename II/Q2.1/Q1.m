@@ -1,8 +1,9 @@
 im = imread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\lena_rings.bmp');
 figure
 imshow(im)
+figure
 imfourier = fftshift(fft2(im));
-%imshow(log(abs(imfourier)), []); 
+imshow(log(abs(imfourier)), []); 
 figure
 h = fspecial('gaussian', [20 20], 1.1);
 y = imfilter(im,h);

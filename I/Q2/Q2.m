@@ -7,10 +7,9 @@ a = 0.90;
 
 %% Sinal Atrasado
 x2=[x', zeros(1,D)];
-x2(D:D+len-1)=x2(D:D+len-1)+x'*a; 
+x2(D:D+len-1)=x2(D:D+len-1)+x'*0.5; 
 
 
-%{
  %% Definicao do Filtro reverberador1
 numerador = 1;                 
 denominador = zeros(1, D + 1); 
@@ -18,9 +17,9 @@ denominador(1) = 1;
 denominador(D + 1) = -a;
 
 y2 = filter(numerador, denominador, x2);
-%}
 
-%%{
+
+%{
 %% Definicao do Filtro reverberador2
 numerador = 1;                 
 denominador = zeros(1, D + 1); 
@@ -29,7 +28,7 @@ denominador(D + 1) = a;
 
 
 y2 = filter(numerador, denominador, x2);
-%%}
+%}
 
 %% Plot
 subplot(3, 1, 1);
