@@ -1,4 +1,4 @@
-im = imread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\lena_rings.bmp');
+im = imread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\lena_rings.bmp');
 figure
 imshow(im)
 imfourier = fftshift(fft2(im));

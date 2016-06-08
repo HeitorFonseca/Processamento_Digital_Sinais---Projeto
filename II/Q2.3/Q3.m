@@ -1,4 +1,4 @@
-im = imread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\dalton.bmp');
+im = imread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\dalton.bmp');
 figure
 imshow(im*1.2);
 

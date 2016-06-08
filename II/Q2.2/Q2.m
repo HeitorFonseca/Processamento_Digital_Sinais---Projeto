@@ -1,4 +1,4 @@
-[im, MAP] = imread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\doc1.bmp');
+[im, MAP] = imread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\doc1.bmp');
 
 imContrast = im*1;
 

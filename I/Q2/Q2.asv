@@ -1,21 +1,14 @@
-[x,Fs] = audioread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\sp04.wav');
-len = length(x)
+[x,Fs] = audioread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\sp04.wav');
+len = length(x);
 D=500;
-a = 0.25;
+%a = 0.25;
 %a = 0.50;
 %a = 0.90;
 
 %% Sinal Atrasado
-%sinald = delayseq(x, D);
-%x2 = z + 0.5*sinald;
+x2=[x', zeros(1,D)];
+x2(D:D+len-1)=x2(D:D+len-1)+x'*a; 
 
-ye=[x', zeros(1,delay)];
-ye(D:D+len-1)=ye(D:D+len-1)+x'*a; 
-
-y = x(D+1: end) + a * x([D+1:end]-D);
-
-y(1:D-1) = 0;
-x(501:end) = y;
 
 %{
  %% Definicao do Filtro reverberador1
@@ -24,25 +17,33 @@ denominador = zeros(1, D + 1);
 denominador(1) = 1;
 denominador(D + 1) = -a;
 
-y2 = filter(numerador, denominador, x);
+y2 = filter(numerador, denominador, x2);
 %}
 
+%%{
 %% Definicao do Filtro reverberador2
 numerador = 1;                 
 denominador = zeros(1, D + 1); 
 denominador(1) = 1;
 denominador(D + 1) = a;
 
-y2 = filter(numerador, denominador, x);
+
+y2 = filter(numerador, denominador, x2);
+%%}
 
 %% Plot
 subplot(3, 1, 1);
 plot(x);
-title('Entrada');
+title('Sinal original');
+
+subplot(3, 1, 2);
+plot(x2);
+title('Sinal original com eco');
 
 subplot(3, 1, 3);
 plot(y2);
-title('Entrada com eco e filtro');
-soundsc(y2,Fs);
+title('Sinal com eco filtrado');
+
+%soundsc(y2,Fs); Ouvir o som
 
 

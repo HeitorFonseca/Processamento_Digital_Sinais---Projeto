@@ -1,4 +1,4 @@
-[x,Fs] = audioread('C:\Users\hfa2\Desktop\New folder\Processamento_Digital_Sinais---Projeto\Arquivos\dg105.wav');
+[x,Fs] = audioread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\dg105.wav');
 
 plot(x), title('Degradado');
 
