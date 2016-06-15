@@ -1,13 +1,11 @@
 [x,Fs] = audioread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\dg105.wav');
-[x2,Fs] = audioread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\or105.wav');
 
-
+so
 
 %% Plota sinal degradado
 figure
 plot(x), title('Sinal Degradado');
-figure
-plot(x2), title('Sinal original');
+
 
 %%  
 % step 1 - quebrar em frames de 0.1s
@@ -21,14 +19,14 @@ novoSinal = zeros(1,N);
 
 contador = 0;
 
-for t = 1 : numFrames
+for f = 1 : numFrames
     
        %% Parte do vetor que corresponde do frame de f-1 até f
-       frame = x((t-1)*lenFrame+1 : lenFrame*t);
+       frame = x((f-1)*lenFrame+1 : lenFrame*f);
        
        %% Verifica so valor de amplitude maximo do frame selecionado acima eh maior que o limiar
-       if(max(frame) > 0.035) % se for -> adiciona ao novo sinal
-           contador = contador+1;  
+       if(max(frame) > 0.05)
+           contador = contador+1;   % se for -> adiciona ao novo sinal
            novoSinal((contador-1)*lenFrame + 1 : lenFrame*contador) = frame;
        end
        
@@ -37,5 +35,3 @@ end
 %% Plota sinal "filtrado" 
 figure
 plot(novoSinal), title('Sinal filtrado');
-
-sound(novoSinal);
