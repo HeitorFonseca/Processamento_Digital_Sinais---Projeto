@@ -1,15 +1,17 @@
 [im, MAP] = imread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\doc1.bmp');
 
-imContrast = im*1;
+%% tentativa de obter o level ideal 
+level = graythresh(im);
 
-level = graythresh(imContrast);
+%% Level por tentativa e erro
 level = 0.455;
 
+%% Binariza a Imagem
 bw = im2bw(im,level);
-%bw2 = bwareaopen(bw, 15);  %Remove small objects from binary image
-bc = imcomplement(bw); % gives you the inverted version of b
+%% Inverte as cores da imagem binarizada
+bc = imcomplement(bw);
 
-
+%% Plota a Imagem Original
 figure;
 title('Imagem Original');
 imshow(im);
@@ -20,13 +22,14 @@ title('Imagem com Contraste');
 imshow(imContrast);
 %}
 
+%% Plota a imagem binarizada
 figure;
 title('Imagem preto e branco');
 imshow(bw);
 
-
+%% Plota a imagem com a cor invertida 
 figure;
 title('Imagem cor invertida');
 imshow(bc);
 
-cc = bwconncomp(bc, 8)
+resultado = bwconncomp(bc, 8)

@@ -1,30 +1,35 @@
 [x,Fs] = audioread('C:\Users\hfa2\Desktop\Processamento_Digital_Sinais---Projeto\Arquivos\dg105.wav');
 
-plot(x), title('Degradado');
+%% Plota sinal degradado
+figure
+plot(x), title('Sinal Degradado');
 
 
-
+%%  
 % step 1 - quebrar em frames de 0.1s
-frame_duration = 0.1;
-frame_len = frame_duration*Fs;
+duracao = 0.1;
+lenFrame = duracao*Fs;
 N = length(x);
-num_frames = floor(N/frame_len);
+numFrames = floor(N/lenFrame);
 
-new_sig = zeros(N,1);
-count = 0;
+%novoSinal = zeros(N,1);
+novoSinal = zeros(1,N);
 
-for k = 1 : num_frames
+contador = 0;
+
+for f = 1 : numFrames
     
-       % extrai frame do sinal
-       frame = x( (k-1)*frame_len +1 : frame_len*k);
+       %% Parte do vetor que corresponde do frame de f-1 até f
+       frame = x((f-1)*lenFrame+1 : lenFrame*f);
        
-       % step 2 - identificar os frames que nao sao silencio
-       max_val = max(frame);
-       
-       if(max_val > 0.04)
-           % frame nao silencioso
-           count = count+1;
-           new_sig( (count-1)*frame_len + 1 : frame_len*count) = frame;
+       %% Verifica so valor de amplitude maximo do frame selecionado acima eh maior que o limiar
+       if(max(frame) > 0.05)
+           contador = contador+1;   % se for -> adiciona ao novo sinal
+           novoSinal((contador-1)*lenFrame + 1 : lenFrame*contador) = frame;
        end
        
 end
+
+%% Plota sinal "filtrado" 
+figure
+plot(novoSinal), title('Sinal filtrado');
